@@ -29,7 +29,7 @@ function App() {
 
   const [selectedLocation, setSelectedLocation] = useState(null);
 
-  useEffect(function fetchObservationLocations() {
+  const fetchObservationLocations = () => {
     const connection = new Metolib.WfsConnection();
     if (connection.connect('http://opendata.fmi.fi/wfs', 'fmi::observations::weather::cities::multipointcoverage')) {
       connection.getData({
@@ -58,7 +58,9 @@ function App() {
         }
       });
     }
-  }, []);
+  }
+
+  useEffect(fetchObservationLocations, []);
 
   const position = [65, 26];
   const map = (
