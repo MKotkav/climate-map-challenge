@@ -1,4 +1,14 @@
-1. npm install found 1 high severity vulnerability. -> Ran npm audit, webpack-dev-server: Missing Origin Validation -> ran npm install react-scripts@2.1.3 to resolve.
-2. ran npm start. Weather markers are in the wrong place. Location info shown on sidebar is correct, tried a few locations with latitude and longitude swapped on a map
--> Locations correlate with where the markers are currently. Rules out locationGetter, Sidebar -> changed App.js 52: const [lon, lat] to const [lat, lon] which fixed the problem.
+1. npm install found 1 high severity vulnerability. 
+-> Ran npm audit, webpack-dev-server: Missing Origin Validation 
+-> ran npm install react-scripts@2.1.3 to resolve.
+2. Ran npm start. Weather markers are in the wrong place. Location info shown on sidebar is correct, tried a few locations with latitude and longitude swapped on a map
+-> Locations correlate with where the markers are currently. Rules out locationGetter, Sidebar 
+-> changed App.js 52: const [lon, lat] to const [lat, lon] markers now displayed in correct Locations.
 
+---Refactoring---
+3. App.js line 33 useEffect function call contains a large function as a parameter, dislike in terms of readability and further refactoring
+-> created separate function expression const fetchObservationLocations that does exactly the same, which is used as a parameter to useEffect call. 
+4. Extracted map as class -> Mapping.js
+
+---Improvements---
+A. Created a new function on Mapping, updateMap, which takes the current center and zoom of the map and updates the maps state so that the map doesn't jump around as much.
