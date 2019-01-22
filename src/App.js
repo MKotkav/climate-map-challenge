@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Metolib from '@fmidev/metolib';
 import './App.css';
 import Sidebar from './Sidebar';
@@ -30,7 +30,7 @@ function App() {
           setObservationLocations(data.locations
             .map(loc => {
               const [lat, lon] = loc.info.position.map(parseFloat);
-              return {...loc, position: {lat, lon}}
+              return { ...loc, position: { lat, lon } }
             })
           );
 
@@ -41,19 +41,19 @@ function App() {
   }
 
   useEffect(fetchObservationLocations, []);
-  
+
   return (
     <div className="App">
       <Sidebar
-        selectedLocationId={selectedLocation} 
+        selectedLocationId={selectedLocation}
         observationLocations={observationLocations}
       />
 
       <Mapping
         observationLocations={observationLocations}
         setSelectedLocation={setSelectedLocation}
-       />
-      
+      />
+
     </div>
   );
 
