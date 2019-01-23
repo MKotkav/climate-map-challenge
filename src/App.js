@@ -13,7 +13,7 @@ function App() {
     const connection = new Metolib.WfsConnection();
     if (connection.connect('http://opendata.fmi.fi/wfs', 'fmi::observations::weather::cities::multipointcoverage')) {
       connection.getData({
-        begin: Date.now() - 60e3 * 60 * 24 * 6,
+        begin: Date.now() - 60e3 * 60 * 24 * 2,
         end: Date.now(),
         requestParameter: "t,snowdepth,r_1h",
         timestep: 60 * 60 * 1000,

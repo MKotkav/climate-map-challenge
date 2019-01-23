@@ -1,17 +1,34 @@
 import React from 'react';
 import styled from "styled-components";
+import Chart from './Chart';
 
-function Sidebar({selectedLocationId, observationLocations}) {
+function Sidebar({ selectedLocationId, observationLocations }) {
     const id = selectedLocationId;
     const loc = observationLocations.find(loc => loc.info.id === id);
-    const locationName = loc && loc.info.name;
-    const locationInfo = loc && JSON.stringify(loc.info);
+    let locationName = "";
+    let locationTemp;
+    if (loc !== undefined) {
+        locationName = loc.info.name
+        locationTemp = "Current temperature: " +loc.data.t.timeValuePairs[loc.data.t.timeValuePairs.length - 1].value + " °C";
+    }
     
-    return <div>
-        <h3>{locationName}</h3>
-        <pre>{locationInfo}</pre>
-        {/* <h1>{loc && JSON.stringify(loc.data.t.timeValuePairs[144].value, null, 4)}</h1> */}
-    </div>
+    const contents = loc === undefined ? 
+        <h1> Choose location</h1> 
+        :
+        <div>
+            <h2 > Location: </h2>
+            <h3 > {locationName} </h3>
+            <pre > {locationTemp} </pre>
+            <Chart
+                locationInfo={loc}
+            />
+        </div>
+
+    return (
+        <div className="Sidebar">
+            {contents}
+        </div>
+    );
 }
 
 export default styled(Sidebar)`

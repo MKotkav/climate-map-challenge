@@ -17,3 +17,7 @@
 
 3. Improvements
 3.1 Created a new function on Mapping, updateMap, which takes the current center and zoom of the map and updates the maps state so that the map doesn't jump around as much.
+3.2 Displaying weather trends with charts. -> Created Charts.js to display data.
+3.3 Decided to show data 48 hours only, so reduced the wfs query begin time from Date.now() - 60e3 * 60 * 24 * 6 to Date.now() - 60e3 * 60 * 24 * 2
+-> quite a lot of unused data delaying the reply, so a slight response improvement.
+3.4 Some minor improvements to sidebar text, added select location prompt when no location selected, added current temperature.
